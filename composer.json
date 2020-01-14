@@ -1,0 +1,15 @@
+{
+    "name": "renno/memento",
+    "authors": [
+        {
+            "name": "Alexandre Gomes",
+            "email": "alexandre@operand.com.br"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Memento\\": "src/"
+        }
+    }
+}
