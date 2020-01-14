@@ -1,5 +1,4 @@
-<?php
-declare(strict_types=1);
+<?php declare(strict_types=1);
 
 namespace Memento\Classes;
 
@@ -16,6 +15,17 @@ class Originator
     {
         $newState = $this->generateRandomString();
         $this->changeState($newState);
+    }
+
+    public function save() : InterfaceMemento
+    {
+        return new ConcreteMemento($this->state);
+    }
+
+    public function restore(InterfaceMemento $memento) : void
+    {
+        $this->state = $memento->getState();
+        echo "\n\n [ORIGINATOR] STATE RESTAURADO: ". json_encode($this->state);
     }
 
     private function changeState(string $code)
@@ -35,16 +45,5 @@ class Originator
             1,
             $length
         );
-    }
-
-    public function save() : InterfaceMemento
-    {
-        return new ConcreteMemento($this->state);
-    }
-
-    public function restore(InterfaceMemento $memento) : void
-    {
-        $this->state = $memento->getState();
-        echo "\n\n [ORIGINATOR] STATE RESTAURADO: ". json_encode($this->state);
     }
 }
